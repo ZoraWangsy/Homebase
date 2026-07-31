@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2f6fed" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="[Cleaning]" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>[Cleaning]</title>
+  <style>
+    :root{
+      --blue:#2f6fed;
+      --blue-dark:#174ea6;
+      --blue-soft:#eaf2ff;
+      --ink:#16324f;
+      --muted:#6b7f93;
+      --line:#d9e5f5;
+      --bg:#f5f9ff;
+      --card:#ffffff;
+      --danger:#d93025;
+      --danger-bg:#fff0ef;
+      --success:#188038;
+      --shadow:0 10px 30px rgba(47,111,237,.10);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#edf5ff 0,#f9fbff 240px);
+      min-height:100vh;
+    }
+    button,input,select{font:inherit}
+    .app{max-width:920px;margin:0 auto;padding:18px 16px 96px}
+    header{
+      display:flex;justify-content:space-between;gap:12px;align-items:center;
+      padding:10px 2px 18px;
+    }
+    h1{font-size:30px;margin:0;letter-spacing:-.6px}
+    .date{color:var(--muted);font-size:14px;margin-top:4px}
+    .icon-btn,.primary,.ghost,.danger-btn{
+      border:0;border-radius:14px;padding:11px 14px;cursor:pointer;
+    }
+    .icon-btn,.ghost{background:#fff;color:var(--blue-dark);box-shadow:var(--shadow)}
+    .primary{background:var(--blue);color:#fff;font-weight:700}
+    .danger-btn{background:var(--danger-bg);color:var(--danger)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+    .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+    .stat b{font-size:25px;display:block;margin-top:4px}
+    .progress{height:8px;background:#edf2f8;border-radius:999px;overflow:hidden;margin-top:10px}
+    .progress > span{display:block;height:100%;background:var(--blue);border-radius:999px}
+    .tabs{display:flex;gap:8px;overflow:auto;padding:2px 1px 12px;scrollbar-width:none}
+    .tab{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:9px 13px;cursor:pointer}
+    .tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+    .section{margin-top:10px}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin:14px 2px 10px}
+    .section-head h2{font-size:19px;margin:0}
+    .count{color:var(--muted);font-size:13px}
+    .task-list{display:grid;gap:10px}
+    .task{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+      box-shadow:0 5px 18px rgba(47,111,237,.06);
+    }
+    .task.overdue{border-color:#f4b4af;background:var(--danger-bg)}
+    .check{
+      width:28px;height:28px;border-radius:9px;border:2px solid #a9bed8;background:#fff;
+      display:grid;place-items:center;cursor:pointer;color:white;font-weight:900;
+    }
+    .task.done .check{background:var(--success);border-color:var(--success)}
+    .task.done .task-title{text-decoration:line-through;color:#7b8fa4}
+    .task-title{font-weight:700;line-height:1.35}
+    .meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .flag{color:var(--danger);font-size:12px;font-weight:700;margin-top:4px}
+    .menu{background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer;padding:8px}
+    .empty{background:#fff;border:1px dashed #bcd0e8;border-radius:18px;padding:28px 18px;text-align:center;color:var(--muted)}
+    .fab{
+      position:fixed;right:20px;bottom:24px;border:0;border-radius:18px;background:var(--blue);color:#fff;
+      font-size:16px;font-weight:800;padding:15px 18px;box-shadow:0 12px 30px rgba(47,111,237,.35);cursor:pointer;
+    }
+    .modal{
+      position:fixed;inset:0;background:rgba(12,34,58,.42);display:none;align-items:flex-end;justify-content:center;z-index:5;
+    }
+    .modal.show{display:flex}
+    .sheet{
+      background:#fff;width:min(100%,620px);border-radius:26px 26px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));
+      max-height:88vh;overflow:auto;
+    }
+    .sheet h3{margin:0 0 16px}
+    label{font-size:13px;color:var(--muted);display:block;margin:12px 0 6px}
+    input,select{
+      width:100%;padding:12px 13px;border:1px solid #c9d9ec;border-radius:13px;background:#fff;color:var(--ink)
+    }
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .sheet-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+    .helper{font-size:12px;color:var(--muted);line-height:1.5;margin-top:8px}
+    .settings-card{background:var(--blue-soft);border-radius:16px;padding:14px;margin-top:12px}
+    @media(max-width:560px){
+      .stats{grid-template-columns:1fr}
+      .stat{display:grid;grid-template-columns:1fr auto;align-items:center}
+      .stat .progress{grid-column:1/-1}
+      h1{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div>
+      <h1>[Cleaning]</h1>
+      <div class="date" id="dateLine"></div>
+    </div>
+    <button class="icon-btn" id="settingsBtn">设置｜Settings</button>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><span>今日完成｜Today</span><b id="todayPct">0%</b><div class="progress"><span id="todayBar"></span></div></div>
+    <div class="stat"><span>本周完成｜This week</span><b id="weekPct">0%</b><div class="progress"><span id="weekBar"></span></div></div>
+    <div class="stat"><span>本月完成｜This month</span><b id="monthPct">0%</b><div class="progress"><span id="monthBar"></span></div></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="today">今日｜Today</button>
+    <button class="tab" data-tab="daily">每日｜Daily</button>
+    <button class="tab" data-tab="scheduled">计划｜Scheduled</button>
+    <button class="tab" data-tab="flexible">灵活｜Flexible</button>
+    <button class="tab" data-tab="all">全部｜All</button>
+  </nav>
+
+  <main id="main"></main>
+</div>
+
+<button class="fab" id="addBtn">＋ 添加｜Add</button>
+
+<div class="modal" id="taskModal">
+  <div class="sheet">
+    <h3 id="modalTitle">添加任务｜Add task</h3>
+    <label>中文名称｜Chinese name</label>
+    <input id="nameZh" placeholder="例如：擦冰箱｜e.g. Clean fridge">
+    <label>英文名称｜English name</label>
+    <input id="nameEn" placeholder="e.g. Clean fridge">
+    <label>任务等级｜Task type</label>
+    <select id="taskType">
+      <option value="daily">每日｜Daily</option>
+      <option value="scheduled">计划｜Scheduled</option>
+      <option value="flexible">灵活｜Flexible</option>
+    </select>
+    <div id="scheduledFields">
+      <div class="row">
+        <div>
+          <label>循环单位｜Repeat unit</label>
+          <select id="repeatUnit">
+            <option value="days">天｜Days</option>
+            <option value="weeks">周｜Weeks</option>
+            <option value="months">月｜Months</option>
+          </select>
+        </div>
+        <div>
+          <label>间隔｜Interval</label>
+          <input id="repeatEvery" type="number" min="1" value="1">
+        </div>
+      </div>
+    </div>
+    <div id="flexFields" style="display:none">
+      <label>完成后次日生成｜Create next-day follow-up</label>
+      <input id="followup" placeholder="例如：收衣服｜e.g. Collect laundry">
+      <div class="helper">灵活任务需手动启动；完成后可自动创建次日跟进任务。｜Flexible tasks are started manually and can create a next-day follow-up.</div>
+    </div>
+    <div class="sheet-actions">
+      <button class="ghost" id="cancelTask">取消｜Cancel</button>
+      <button class="primary" id="saveTask">保存｜Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="settingsModal">
+  <div class="sheet">
+    <h3>工作台设置｜Workspace settings</h3>
+    <div class="settings-card">
+      <b>安装到手机桌面｜Add to Home Screen</b>
+      <p class="helper">iPhone：Safari 分享 → 添加到主屏幕。Android：Chrome 菜单 → 安装应用。｜iPhone: Safari Share → Add to Home Screen. Android: Chrome menu → Install app.</p>
+    </div>
+    <div class="settings-card">
+      <b>数据存储｜Data storage</b>
+      <p class="helper">所有任务和完成记录保存在当前浏览器本地。｜Tasks and completion history are stored locally in this browser.</p>
+      <button class="danger-btn" id="resetBtn">恢复默认并清空记录｜Reset all data</button>
+    </div>
+    <div class="sheet-actions">
+      <button class="primary" id="closeSettings">完成｜Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DAY=86400000;
+const iso=d=>new Date(d).toISOString().slice(0,10);
+const today=()=>iso(new Date());
+const uid=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
+
+const defaults=[
+  {id:uid(),zh:"洗碗",en:"Wash dishes",type:"daily"},
+  {id:uid(),zh:"洗小猫的碗",en:"Wash the cat's bowls",type:"daily"},
+  {id:uid(),zh:"铲屎",en:"Scoop litter",type:"daily"},
+  {id:uid(),zh:"扫地",en:"Sweep floors",type:"daily"},
+  {id:uid(),zh:"擦餐桌",en:"Wipe dining table",type:"scheduled",unit:"days",every:3,start:today()},
+  {id:uid(),zh:"吸地毯",en:"Vacuum carpets",type:"scheduled",unit:"days",every:3,start:today()},
+  {id:uid(),zh:"清理厨房（擦台面，刷水池，擦灶台，擦墙面）",en:"Clean kitchen (countertops, sink, stovetop and walls)",type:"scheduled",unit:"weeks",every:1,start:today()},
+  {id:uid(),zh:"清理浴室（水池、马桶、柜子、墙面和玻璃、头发、地面）",en:"Clean bathroom (sink, toilet, cabinet, walls, glass, hair and floor)",type:"scheduled",unit:"weeks",every:2,start:today()},
+  {id:uid(),zh:"打扫车库",en:"Clean garage",type:"scheduled",unit:"months",every:1,start:today()},
+  {id:uid(),zh:"擦厨房顶柜",en:"Wipe upper kitchen cabinets",type:"scheduled",unit:"months",every:1,start:today()},
+  {id:uid(),zh:"洗衣服",en:"Do laundry",type:"flexible",followupZh:"收衣服",followupEn:"Collect laundry"}
+];
+
+let state=JSON.parse(localStorage.getItem("cleaningState")||"null")||{
+  tasks:defaults, done:{}, deferred:{}, generated:[], activeTab:"today"
+};
+
+function save(){localStorage.setItem("cleaningState",JSON.stringify(state))}
+function startOfWeek(d=new Date()){
+  const x=new Date(d); const day=(x.getDay()+6)%7;
+  x.setHours(0,0,0,0); x.setDate(x.getDate()-day); return x;
+}
+function endOfMonth(d=new Date()){return new Date(d.getFullYear(),d.getMonth()+1,0)}
+function addDays(s,n){const d=new Date(s+"T12:00:00");d.setDate(d.getDate()+n);return iso(d)}
+function diffDays(a,b){return Math.floor((new Date(a+"T12:00:00")-new Date(b+"T12:00:00"))/DAY)}
+function monthDiff(a,b){return (new Date(a).getFullYear()-new Date(b).getFullYear())*12+new Date(a).getMonth()-new Date(b).getMonth()}
+
+function leastBusyDateInWeek(containingDate){
+  const base=new Date(containingDate+"T12:00:00");
+  const ws=startOfWeek(base);
+  const dates=[0,1,2,3,4,5,6].map(i=>iso(new Date(ws.getTime()+i*DAY)));
+  const counts=Object.fromEntries(dates.map(d=>[d,0]));
+  dates.forEach(d=>{
+    state.tasks.forEach(t=>{
+      if(t.type==="daily") counts[d]++;
+      if(t.type==="scheduled"){
+        const start=t.start||today(), dd=diffDays(d,start);
+        if(dd<0) return;
+        if(t.unit==="days" && dd%(t.every||1)===0) counts[d]++;
+        if(t.unit==="weeks" && (t.every||1)===1 && dd%7===0) counts[d]++;
+      }
+    });
+    state.generated.filter(g=>g.date===d).forEach(()=>counts[d]++);
+  });
+  return dates.sort((a,b)=>counts[a]-counts[b] || a.localeCompare(b))[0];
+}
+function dueScheduled(task,date){
+  const start=task.start||today(), dd=diffDays(date,start);
+  if(dd<0) return false;
+  if(task.unit==="days") return dd%(task.every||1)===0;
+  if(task.unit==="weeks"){
+    const every=task.every||1;
+    if(every===1) return dd%7===0;
+    const weekNo=Math.floor(dd/7);
+    if(weekNo%every!==0) return false;
+    const weekKey=iso(startOfWeek(new Date(date+"T12:00:00")));
+    if(task.assignedWeek!==weekKey){
+      task.assignedWeek=weekKey;
+      task.assignedDate=leastBusyDateInWeek(date);
+      save();
+    }
+    return task.assignedDate===date;
+  }
+  if(task.unit==="months"){
+    const md=monthDiff(date,start);
+    if(md<0 || md%(task.every||1)!==0) return false;
+    const monthKey=date.slice(0,7);
+    if(task.assignedMonth!==monthKey){
+      task.assignedMonth=monthKey;
+      task.assignedDate=leastBusyDateInWeek(date);
+      save();
+    }
+    return task.assignedDate===date;
+  }
+  return false;
+}
+function instanceKey(taskId,date){return taskId+"@"+date}
+function getInstancesForDate(date,includeDeferred=true){
+  const arr=[];
+  state.tasks.forEach(t=>{
+    let due=false;
+    if(t.type==="daily") due=true;
+    if(t.type==="scheduled") due=dueScheduled(t,date);
+    if(t.type==="flexible") due=false;
+    if(due) arr.push({...t,date,key:instanceKey(t.id,date)});
+  });
+  state.generated.filter(g=>g.date===date).forEach(g=>arr.push({...g,key:instanceKey(g.id,date)}));
+  if(includeDeferred){
+    Object.entries(state.deferred).forEach(([key,to])=>{
+      if(to===date){
+        const [id,from]=key.split("@");
+        const t=state.tasks.find(x=>x.id===id)||state.generated.find(x=>x.id===id);
+        if(t && !arr.some(x=>x.key===key)) arr.push({...t,date,key,overdue:true,from});
+      }
+    });
+  }
+  return arr;
+}
+function isDone(key){return !!state.done[key]}
+function toggleDone(inst){
+  if(isDone(inst.key)){
+    delete state.done[inst.key];
+  }else{
+    state.done[inst.key]=new Date().toISOString();
+    delete state.deferred[inst.key];
+    if(inst.type==="flexible" && (inst.followupZh||inst.followupEn)){
+      const date=addDays(inst.date,1);
+      if(!state.generated.some(g=>g.parentKey===inst.key)){
+        state.generated.push({id:uid(),zh:inst.followupZh||"跟进任务",en:inst.followupEn||"Follow-up task",type:"generated",date,parentKey:inst.key});
+      }
+    }
+  }
+  save(); render();
+}
+function autoDefer(){
+  const t=today();
+  const yesterday=addDays(t,-1);
+  getInstancesForDate(yesterday,false).forEach(inst=>{
+    if(!isDone(inst.key) && !state.deferred[inst.key]) state.deferred[inst.key]=t;
+  });
+  Object.entries(state.deferred).forEach(([key,to])=>{
+    if(to<t && !isDone(key)) state.deferred[key]=t;
+  });
+  save();
+}
+function rangeStats(start,end){
+  let total=0,done=0;
+  for(let d=iso(start);d<=iso(end);d=addDays(d,1)){
+    getInstancesForDate(d,true).forEach(i=>{total++; if(isDone(i.key))done++});
+  }
+  return total?Math.round(done/total*100):0;
+}
+function updateStats(){
+  const now=new Date(), t=today();
+  const td=getInstancesForDate(t,true); const tp=td.length?Math.round(td.filter(i=>isDone(i.key)).length/td.length*100):0;
+  const wp=rangeStats(startOfWeek(now),new Date(startOfWeek(now).getTime()+6*DAY));
+  const mp=rangeStats(new Date(now.getFullYear(),now.getMonth(),1),endOfMonth(now));
+  [["today",tp],["week",wp],["month",mp]].forEach(([k,p])=>{
+    document.getElementById(k+"Pct").textContent=p+"%";
+    document.getElementById(k+"Bar").style.width=p+"%";
+  });
+}
+function taskCard(inst){
+  const done=isDone(inst.key);
+  const div=document.createElement("div");
+  div.className="task"+(done?" done":"")+(inst.overdue?" overdue":"");
+  div.innerHTML=`
+    <button class="check">${done?"✓":""}</button>
+    <div><div class="task-title">${inst.zh}｜${inst.en}</div>
+    <div class="meta">${labelType(inst)} · ${inst.date}</div>
+    ${inst.overdue?'<div class="flag">🚩 未完成，已延期｜Overdue and deferred</div>':""}</div>
+    <button class="menu">⋯</button>`;
+  div.querySelector(".check").onclick=()=>toggleDone(inst);
+  div.querySelector(".menu").onclick=()=>taskMenu(inst);
+  return div;
+}
+function labelType(t){
+  if(t.type==="daily") return "每天｜Daily";
+  if(t.type==="scheduled") return "计划｜Scheduled";
+  if(t.type==="flexible") return "灵活｜Flexible";
+  return "跟进｜Follow-up";
+}
+function section(title,items){
+  const wrap=document.createElement("section"); wrap.className="section";
+  wrap.innerHTML=`<div class="section-head"><h2>${title}</h2><span class="count">${items.filter(i=>isDone(i.key)).length}/${items.length}</span></div>`;
+  const list=document.createElement("div"); list.className="task-list";
+  if(!items.length) list.innerHTML='<div class="empty">暂无任务｜No tasks</div>';
+  items.forEach(i=>list.appendChild(taskCard(i)));
+  wrap.appendChild(list); return wrap;
+}
+function render(){
+  autoDefer(); updateStats();
+  document.getElementById("dateLine").textContent=new Intl.DateTimeFormat("zh-CN",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(new Date())+"｜"+new Intl.DateTimeFormat("en-NZ",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(new Date());
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===state.activeTab));
+  const main=document.getElementById("main"); main.innerHTML="";
+  const t=today();
+  if(state.activeTab==="today"){
+    const items=getInstancesForDate(t,true);
+    main.appendChild(section("今日任务｜Today’s tasks",items));
+    const flex=state.tasks.filter(x=>x.type==="flexible").map(x=>({...x,date:t,key:instanceKey(x.id,t)}));
+    main.appendChild(section("可启动任务｜Start a flexible task",flex));
+  } else {
+    const filter=state.activeTab==="all"?state.tasks:state.tasks.filter(x=>x.type===state.activeTab);
+    const items=filter.map(x=>({...x,date:t,key:instanceKey(x.id,t)}));
+    main.appendChild(section("任务库｜Task library",items));
+  }
+}
+function taskMenu(inst){
+  const action=confirm(`删除“${inst.zh}｜${inst.en}”？\nDelete this task?`);
+  if(action){
+    state.tasks=state.tasks.filter(t=>t.id!==inst.id);
+    state.generated=state.generated.filter(t=>t.id!==inst.id);
+    save(); render();
+  }
+}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.tab;save();render()});
+const taskModal=document.getElementById("taskModal");
+const settingsModal=document.getElementById("settingsModal");
+document.getElementById("addBtn").onclick=()=>taskModal.classList.add("show");
+document.getElementById("cancelTask").onclick=()=>taskModal.classList.remove("show");
+document.getElementById("settingsBtn").onclick=()=>settingsModal.classList.add("show");
+document.getElementById("closeSettings").onclick=()=>settingsModal.classList.remove("show");
+document.getElementById("taskType").onchange=e=>{
+  scheduledFields.style.display=e.target.value==="scheduled"?"block":"none";
+  flexFields.style.display=e.target.value==="flexible"?"block":"none";
+};
+document.getElementById("saveTask").onclick=()=>{
+  const zh=nameZh.value.trim(), en=nameEn.value.trim(), type=taskType.value;
+  if(!zh||!en){alert("请填写中英文名称｜Please enter both names");return}
+  const t={id:uid(),zh,en,type};
+  if(type==="scheduled"){t.unit=repeatUnit.value;t.every=Math.max(1,+repeatEvery.value||1);t.start=today()}
+  if(type==="flexible"){
+    const parts=followup.value.split("｜");
+    t.followupZh=(parts[0]||"").trim();t.followupEn=(parts[1]||parts[0]||"").trim();
+  }
+  state.tasks.push(t);save();
+  nameZh.value=nameEn.value=followup.value="";
+  taskModal.classList.remove("show");render();
+};
+document.getElementById("resetBtn").onclick=()=>{
+  if(confirm("确定清空全部数据？｜Clear all data?")){
+    localStorage.removeItem("cleaningState");location.reload();
+  }
+};
+taskModal.onclick=e=>{if(e.target===taskModal)taskModal.classList.remove("show")};
+settingsModal.onclick=e=>{if(e.target===settingsModal)settingsModal.classList.remove("show")};
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
+render();
+</script>
+</body>
+</html>
