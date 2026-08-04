@@ -1,11 +1,15 @@
-[Cleaning] 家庭清洁工作台｜Home Cleaning Workbench
+Homebase v0.2
 
-使用方式｜How to use
-1. 将整个文件夹放到任意静态网站托管服务（例如 GitHub Pages、Netlify 或 Cloudflare Pages）。
-2. 用手机浏览器打开网址。
-3. iPhone：Safari 分享 → 添加到主屏幕。
-4. Android：Chrome 菜单 → 安装应用。
+Warm Apple-style glassmorphism PWA dashboard with:
+- Meatball photo background
+- Christchurch live weather (Open-Meteo, no API key)
+- Today's Tasks, Schedule and Quick Actions
+- Daily, Scheduled and Flexible task types
+- English / Chinese interface
+- Local browser storage and offline caching
 
-注意｜Note
-直接双击 index.html 可以预览，但“添加到手机桌面”和离线功能需要通过 HTTPS 网站打开。
-任务和完成记录保存在浏览器本地，不会上传。
+GitHub Pages
+Upload the complete contents of this folder to the repository root. In GitHub, open Settings → Pages, choose “Deploy from a branch”, then select main / root.
+
+Data
+Existing cleaningState Local Storage data is preserved. Task and completion data stays in the current browser.
