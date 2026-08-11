@@ -1,4 +1,4 @@
-Homebase v0.2
+Homebase v0.5
 
 Warm Apple-style glassmorphism PWA dashboard with:
 - Meatball photo background
@@ -7,6 +7,9 @@ Warm Apple-style glassmorphism PWA dashboard with:
 - Daily, Scheduled and Flexible task types
 - English / Chinese interface
 - Local browser storage and offline caching
+- New Zealand local-date scheduling and missed-task carry-over
+- Full Today and upcoming Schedule views
+- Meatball background and Home Screen icon
 
 GitHub Pages
 Upload the complete contents of this folder to the repository root. In GitHub, open Settings → Pages, choose “Deploy from a branch”, then select main / root.

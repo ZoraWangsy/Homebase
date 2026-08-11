@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Homebase">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=03">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=05">
+  <link rel="stylesheet" href="css/app.css?v=05">
   <title>Homebase</title>
 </head>
 <body>
@@ -89,6 +89,8 @@
         <option value="flexible" data-i18n="flexibleTask">Flexible</option>
       </select>
       <div id="scheduledFields" hidden>
+        <label for="startDate" data-i18n="startDate">Start date</label>
+        <input id="startDate" type="date">
         <div class="form-row">
           <div><label for="repeatEvery" data-i18n="repeatEvery">Repeat every</label><input id="repeatEvery" type="number" min="1" value="1"></div>
           <div><label for="repeatUnit" data-i18n="unit">Unit</label><select id="repeatUnit"><option value="days" data-i18n="days">Days</option><option value="weeks" data-i18n="weeks">Weeks</option><option value="months" data-i18n="months">Months</option></select></div>
@@ -112,6 +114,23 @@
     </section>
   </div>
 
+  <div class="modal" id="todayModal" aria-hidden="true">
+    <section class="sheet glass tall-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><h3 data-i18n="todayTasks">Today’s Tasks</h3><button class="close-button" data-close="todayModal" type="button" aria-label="Close">×</button></div>
+      <div class="task-list library-list" id="fullTodayList"></div>
+    </section>
+  </div>
+
+  <div class="modal" id="scheduleModal" aria-hidden="true">
+    <section class="sheet glass tall-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><h3 data-i18n="upcomingSchedule">Upcoming schedule</h3><button class="close-button" data-close="scheduleModal" type="button" aria-label="Close">×</button></div>
+      <div class="schedule-list full-schedule-list" id="fullScheduleList"></div>
+      <button class="primary-button" id="scheduleModalAddBtn" type="button" data-i18n="addSchedule">Add scheduled task</button>
+    </section>
+  </div>
+
   <div class="modal" id="settingsModal" aria-hidden="true">
     <section class="sheet glass">
       <div class="sheet-handle"></div>
@@ -124,6 +143,6 @@
   </div>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="js/app.js?v=04" defer></script>
+  <script src="js/app.js?v=05" defer></script>
 </body>
 </html>
