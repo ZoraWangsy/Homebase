@@ -1,14 +1,14 @@
-const CACHE = "homebase-v05-bugfix";
+const CACHE = "homebase-v06-weight-tracking";
 const ASSETS = [
   "./",
   "./index.html",
-  "./css/app.css?v=05",
-  "./js/app.js?v=05",
+  "./css/app.css?v=06",
+  "./js/app.js?v=06",
   "./assets/meatball.jpeg",
   "./manifest.webmanifest",
-  "./apple-touch-icon.png?v=05",
-  "./icon-192.png?v=05",
-  "./icon-512.png?v=05"
+  "./apple-touch-icon.png?v=06",
+  "./icon-192.png?v=06",
+  "./icon-512.png?v=06"
 ];
 
 self.addEventListener("install", event => {
