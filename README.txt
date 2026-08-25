@@ -1,4 +1,4 @@
-Homebase v0.6
+Homebase v0.7
 
 Warm Apple-style glassmorphism PWA dashboard with:
 - Meatball photo background
@@ -14,9 +14,11 @@ Warm Apple-style glassmorphism PWA dashboard with:
 - Health view with fasting-only weight trend chart
 - Weight date, time, fasting status and optional notes
 - Complete weight history stored locally on the device
+- Separate Meatball / 咪宝 weight tracking with historical-date entry
+- Independent pet weight chart and history (no monthly reminders)
 
 GitHub Pages
 Upload the complete contents of this folder to the repository root. In GitHub, open Settings → Pages, choose “Deploy from a branch”, then select main / root.
 
 Data
-Existing cleaningState Local Storage data is preserved. Task, completion and weight data stays in the current browser.
+Existing cleaningState Local Storage data is preserved. Task, completion, personal weight and pet weight data stays in the current browser.

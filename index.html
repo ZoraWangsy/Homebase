@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Homebase">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=06">
-  <link rel="stylesheet" href="css/app.css?v=06">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=07">
+  <link rel="stylesheet" href="css/app.css?v=07">
   <title>Homebase</title>
 </head>
 <body>
@@ -153,18 +153,41 @@
     <section class="sheet glass tall-sheet health-sheet">
       <div class="sheet-handle"></div>
       <div class="sheet-title"><div><h3 data-i18n="weightTracking">Weight tracking</h3><p class="sheet-subtitle" data-i18n="healthIntro">Record consistently to see a clearer long-term trend.</p></div><button class="close-button" data-close="healthModal" type="button" aria-label="Close">×</button></div>
-      <div class="health-stats">
-        <div><small data-i18n="latestFasting">Latest fasting</small><strong id="healthLatest">—</strong></div>
-        <div><small data-i18n="fastingChange">Change</small><strong id="healthChange">—</strong></div>
-        <div><small data-i18n="fastingEntries">Fasting entries</small><strong id="healthCount">0</strong></div>
+      <div class="health-tabs" role="tablist">
+        <button class="health-tab active" id="personalHealthTab" data-health-view="personal" type="button" role="tab" aria-selected="true"><span>♡</span><span data-i18n="myWeight">My weight</span></button>
+        <button class="health-tab" id="petHealthTab" data-health-view="pet" type="button" role="tab" aria-selected="false"><span>🐾</span><span data-i18n="petWeight">Meatball’s weight</span></button>
       </div>
-      <div class="weight-chart-card">
-        <div class="chart-heading"><strong data-i18n="fastingTrend">Fasting trend only</strong><small id="chartRange"></small></div>
-        <div class="chart-wrap"><canvas id="weightChart" role="img" aria-label="Fasting weight trend chart"></canvas><div class="chart-empty" id="chartEmpty" data-i18n="needTwoFasting">Add two fasting records to see your trend.</div></div>
+
+      <div class="health-view" id="personalHealthView" role="tabpanel" aria-labelledby="personalHealthTab">
+        <div class="health-stats">
+          <div><small data-i18n="latestFasting">Latest fasting</small><strong id="healthLatest">—</strong></div>
+          <div><small data-i18n="fastingChange">Change</small><strong id="healthChange">—</strong></div>
+          <div><small data-i18n="fastingEntries">Fasting entries</small><strong id="healthCount">0</strong></div>
+        </div>
+        <div class="weight-chart-card">
+          <div class="chart-heading"><strong data-i18n="fastingTrend">Fasting trend only</strong><small id="chartRange"></small></div>
+          <div class="chart-wrap"><canvas id="weightChart" role="img" aria-label="Fasting weight trend chart"></canvas><div class="chart-empty" id="chartEmpty" data-i18n="needTwoFasting">Add two fasting records to see your trend.</div></div>
+        </div>
+        <button class="primary-button add-weight-button" id="addWeightBtn" type="button" data-i18n="addWeight">Add weight</button>
+        <div class="history-heading"><h4 data-i18n="weightHistory">Weight history</h4><small data-i18n="allRecordsShown">All records are shown below</small></div>
+        <div class="weight-history" id="weightHistory"></div>
       </div>
-      <button class="primary-button add-weight-button" id="addWeightBtn" type="button" data-i18n="addWeight">Add weight</button>
-      <div class="history-heading"><h4 data-i18n="weightHistory">Weight history</h4><small data-i18n="allRecordsShown">All records are shown below</small></div>
-      <div class="weight-history" id="weightHistory"></div>
+
+      <div class="health-view" id="petHealthView" role="tabpanel" aria-labelledby="petHealthTab" hidden>
+        <div class="pet-intro"><span class="pet-avatar">🐾</span><div><strong data-i18n="petWeight">Meatball’s weight</strong><small data-i18n="petHealthIntro">A separate record for monthly weight changes.</small></div></div>
+        <div class="health-stats">
+          <div><small data-i18n="latestWeight">Latest weight</small><strong id="petLatest">—</strong></div>
+          <div><small data-i18n="weightChange">Change</small><strong id="petChange">—</strong></div>
+          <div><small data-i18n="totalEntries">Entries</small><strong id="petCount">0</strong></div>
+        </div>
+        <div class="weight-chart-card pet-chart-card">
+          <div class="chart-heading"><strong data-i18n="petWeightTrend">Weight trend</strong><small id="petChartRange"></small></div>
+          <div class="chart-wrap"><canvas id="petWeightChart" role="img" aria-label="Meatball weight trend chart"></canvas><div class="chart-empty" id="petChartEmpty" data-i18n="needTwoPetWeights">Add two records to see Meatball’s trend.</div></div>
+        </div>
+        <button class="primary-button add-weight-button pet-button" id="addPetWeightBtn" type="button" data-i18n="addPetWeight">Add Meatball’s weight</button>
+        <div class="history-heading"><h4 data-i18n="petWeightHistory">Meatball’s weight history</h4><small data-i18n="historicalRecordsWelcome">Past dates can be added</small></div>
+        <div class="weight-history" id="petWeightHistory"></div>
+      </div>
     </section>
   </div>
 
@@ -185,6 +208,21 @@
     </form>
   </div>
 
+  <div class="modal" id="petWeightFormModal" aria-hidden="true">
+    <form class="sheet glass" id="petWeightForm">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><h3 data-i18n="addPetWeight">Add Meatball’s weight</h3><button class="close-button" data-close="petWeightFormModal" type="button" aria-label="Close">×</button></div>
+      <p class="form-help" data-i18n="petHistoryHelp">Choose any past date to add an older record.</p>
+      <label for="petWeightValue" data-i18n="weightKg">Weight (kg)</label>
+      <input id="petWeightValue" type="number" min="0.2" max="30" step="0.01" inputmode="decimal" placeholder="4.80" required>
+      <label for="petWeightDate" data-i18n="recordDate">Date</label>
+      <input id="petWeightDate" type="date" required>
+      <label for="petWeightNote" data-i18n="noteOptional">Note (optional)</label>
+      <input id="petWeightNote" maxlength="100" data-i18n-placeholder="petWeightNotePlaceholder" placeholder="e.g. Home scale">
+      <button class="primary-button pet-button" type="submit" data-i18n="savePetWeight">Save Meatball’s weight</button>
+    </form>
+  </div>
+
   <div class="modal" id="settingsModal" aria-hidden="true">
     <section class="sheet glass">
       <div class="sheet-handle"></div>
@@ -197,6 +235,6 @@
   </div>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="js/app.js?v=06" defer></script>
+  <script src="js/app.js?v=07" defer></script>
 </body>
 </html>
