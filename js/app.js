@@ -24,8 +24,8 @@ const monthDiff = (a, b) => {
 const keyFor = (id, date) => `${id}@${date}`;
 
 const copy = {
-  en: {greeting:"Good afternoon, Zora.",subtitle:"A calm home starts with one small thing.",todayTasks:"Today’s Tasks",schedule:"Schedule",upcomingSchedule:"Upcoming schedule",viewAll:"View all today’s tasks",addSchedule:"Add scheduled task",quickActions:"Quick Actions",makeItEasy:"Make it easy",dailyTask:"Daily task",everyDay:"Every day",scheduledTask:"Scheduled",chooseRepeat:"Choose a repeat",flexibleTask:"Flexible",wheneverReady:"Whenever you’re ready",dashboard:"Dashboard",tasks:"Tasks",health:"Health",settings:"Settings",addTask:"Add task",englishName:"English name",chineseName:"Chinese name",taskType:"Task type",startDate:"Start date",repeatEvery:"Repeat every",unit:"Unit",days:"Days",weeks:"Weeks",months:"Months",followUp:"Next-day follow-up (optional)",saveTask:"Save task",allTasks:"All tasks",language:"Language",languageHelp:"Switch between English and Chinese",weatherLocation:"Weather location",locate:"Locate",install:"Install Homebase",installHelp:"Add this dashboard to your Home Screen",installButton:"Install",reset:"Reset all local data",all:"All",today:"Today",overdue:"Overdue",noTasks:"Nothing waiting here.",deleteConfirm:"Delete this task?",resetConfirm:"Reset every task, weight record, completion record and saved weather location?",saved:"Task saved",weatherError:"Weather unavailable",locationDenied:"Location access was not available",installed:"Homebase is ready to install",installIos:"On iPhone, tap Share, then Add to Home Screen.",complete:"Complete",undo:"Mark incomplete",deleteTask:"Delete",weightTracking:"Weight tracking",fastingTrend:"Fasting trend only",noWeightYet:"No fasting records yet",openHealth:"Open health record",healthIntro:"Record consistently to see a clearer long-term trend.",latestFasting:"Latest fasting",fastingChange:"Change",fastingEntries:"Fasting entries",needTwoFasting:"Add two fasting records to see your trend.",addWeight:"Add weight",weightHistory:"Weight history",allRecordsShown:"All records are shown below",weightKg:"Weight (kg)",recordDate:"Date",recordTime:"Time",fastingRecord:"Fasting measurement",fastingHelp:"Included in your trend chart",noteOptional:"Note (optional)",weightNotePlaceholder:"e.g. Before breakfast",saveWeight:"Save weight",weightSaved:"Weight saved",deleteWeight:"Delete weight record",deleteWeightConfirm:"Delete this weight record?",fasting:"Fasting",notFasting:"Not fasting",noWeightRecords:"No weight records yet.",fromFirst:"from first",latest:"latest"},
-  zh: {greeting:"下午好，左拉。",subtitle:"从一件小事开始，让家慢慢变得舒适。",todayTasks:"今日任务",schedule:"日程",upcomingSchedule:"未来日程",viewAll:"查看今日全部任务",addSchedule:"添加计划任务",quickActions:"快捷操作",makeItEasy:"让一切更简单",dailyTask:"每日任务",everyDay:"每天重复",scheduledTask:"计划任务",chooseRepeat:"选择循环周期",flexibleTask:"灵活任务",wheneverReady:"准备好时再开始",dashboard:"主页",tasks:"任务",health:"健康",settings:"设置",addTask:"添加任务",englishName:"英文名称",chineseName:"中文名称",taskType:"任务类型",startDate:"开始日期",repeatEvery:"每隔",unit:"单位",days:"天",weeks:"周",months:"月",followUp:"次日跟进（选填）",saveTask:"保存任务",allTasks:"全部任务",language:"语言",languageHelp:"切换中文或英文",weatherLocation:"天气地点",locate:"定位",install:"安装 Homebase",installHelp:"将工作台添加到手机主屏幕",installButton:"安装",reset:"清空本地数据",all:"全部",today:"今日",overdue:"已逾期",noTasks:"这里暂时没有任务。",deleteConfirm:"删除这项任务？",resetConfirm:"清空所有任务、体重记录、完成记录和天气地点？",saved:"任务已保存",weatherError:"暂时无法获取天气",locationDenied:"无法使用当前位置",installed:"Homebase 已可以安装",installIos:"iPhone 请点击分享，再选择“添加到主屏幕”。",complete:"完成",undo:"标记为未完成",deleteTask:"删除",weightTracking:"体重记录",fastingTrend:"仅显示空腹趋势",noWeightYet:"还没有空腹记录",openHealth:"打开健康记录",healthIntro:"尽量保持相同时间与状态，长期趋势会更清楚。",latestFasting:"最近空腹体重",fastingChange:"体重变化",fastingEntries:"空腹记录",needTwoFasting:"添加两次空腹体重后即可查看趋势。",addWeight:"记录体重",weightHistory:"体重历史",allRecordsShown:"下方显示全部记录",weightKg:"体重（kg）",recordDate:"日期",recordTime:"时间",fastingRecord:"空腹测量",fastingHelp:"此记录会计入趋势图",noteOptional:"备注（选填）",weightNotePlaceholder:"例如：早餐前",saveWeight:"保存体重",weightSaved:"体重已保存",deleteWeight:"删除体重记录",deleteWeightConfirm:"删除这条体重记录？",fasting:"空腹",notFasting:"非空腹",noWeightRecords:"还没有体重记录。",fromFirst:"较首次",latest:"最近"}
+  en: {greeting:"Good afternoon, Zora.",subtitle:"A calm home starts with one small thing.",todayTasks:"Today’s Tasks",schedule:"Schedule",upcomingSchedule:"Upcoming schedule",viewAll:"View all today’s tasks",addSchedule:"Add scheduled task",quickActions:"Quick Actions",makeItEasy:"Make it easy",dailyTask:"Daily task",everyDay:"Every day",scheduledTask:"Scheduled",chooseRepeat:"Choose a repeat",flexibleTask:"Flexible",wheneverReady:"Whenever you’re ready",dashboard:"Dashboard",tasks:"Tasks",health:"Health",settings:"Settings",addTask:"Add task",englishName:"English name",chineseName:"Chinese name",taskType:"Task type",startDate:"Start date",repeatEvery:"Repeat every",unit:"Unit",days:"Days",weeks:"Weeks",months:"Months",followUp:"Next-day follow-up (optional)",saveTask:"Save task",allTasks:"All tasks",language:"Language",languageHelp:"Switch between English and Chinese",weatherLocation:"Weather location",locate:"Locate",install:"Install Homebase",installHelp:"Add this dashboard to your Home Screen",installButton:"Install",reset:"Reset all local data",all:"All",today:"Today",overdue:"Overdue",noTasks:"Nothing waiting here.",deleteConfirm:"Delete this task?",resetConfirm:"Reset every task, personal and Meatball weight record, completion record and saved weather location?",saved:"Task saved",weatherError:"Weather unavailable",locationDenied:"Location access was not available",installed:"Homebase is ready to install",installIos:"On iPhone, tap Share, then Add to Home Screen.",complete:"Complete",undo:"Mark incomplete",deleteTask:"Delete",weightTracking:"Weight tracking",fastingTrend:"Fasting trend only",noWeightYet:"No fasting records yet",openHealth:"Open health record",healthIntro:"Record consistently to see a clearer long-term trend.",latestFasting:"Latest fasting",fastingChange:"Change",fastingEntries:"Fasting entries",needTwoFasting:"Add two fasting records to see your trend.",addWeight:"Add weight",weightHistory:"Weight history",allRecordsShown:"All records are shown below",weightKg:"Weight (kg)",recordDate:"Date",recordTime:"Time",fastingRecord:"Fasting measurement",fastingHelp:"Included in your trend chart",noteOptional:"Note (optional)",weightNotePlaceholder:"e.g. Before breakfast",saveWeight:"Save weight",weightSaved:"Weight saved",deleteWeight:"Delete weight record",deleteWeightConfirm:"Delete this weight record?",fasting:"Fasting",notFasting:"Not fasting",noWeightRecords:"No weight records yet.",fromFirst:"from first",latest:"latest",myWeight:"My weight",petWeight:"Meatball’s weight",petHealthIntro:"A separate record for monthly weight changes.",latestWeight:"Latest weight",weightChange:"Change",totalEntries:"Entries",petWeightTrend:"Weight trend",needTwoPetWeights:"Add two records to see Meatball’s trend.",addPetWeight:"Add Meatball’s weight",petWeightHistory:"Meatball’s weight history",historicalRecordsWelcome:"Past dates can be added",petHistoryHelp:"Choose any past date to add an older record.",petWeightNotePlaceholder:"e.g. Home scale",savePetWeight:"Save Meatball’s weight",petWeightSaved:"Meatball’s weight saved",deletePetWeight:"Delete Meatball’s weight record",deletePetWeightConfirm:"Delete this Meatball weight record?",noPetWeightRecords:"No Meatball weight records yet."},
+  zh: {greeting:"下午好，左拉。",subtitle:"从一件小事开始，让家慢慢变得舒适。",todayTasks:"今日任务",schedule:"日程",upcomingSchedule:"未来日程",viewAll:"查看今日全部任务",addSchedule:"添加计划任务",quickActions:"快捷操作",makeItEasy:"让一切更简单",dailyTask:"每日任务",everyDay:"每天重复",scheduledTask:"计划任务",chooseRepeat:"选择循环周期",flexibleTask:"灵活任务",wheneverReady:"准备好时再开始",dashboard:"主页",tasks:"任务",health:"健康",settings:"设置",addTask:"添加任务",englishName:"英文名称",chineseName:"中文名称",taskType:"任务类型",startDate:"开始日期",repeatEvery:"每隔",unit:"单位",days:"天",weeks:"周",months:"月",followUp:"次日跟进（选填）",saveTask:"保存任务",allTasks:"全部任务",language:"语言",languageHelp:"切换中文或英文",weatherLocation:"天气地点",locate:"定位",install:"安装 Homebase",installHelp:"将工作台添加到手机主屏幕",installButton:"安装",reset:"清空本地数据",all:"全部",today:"今日",overdue:"已逾期",noTasks:"这里暂时没有任务。",deleteConfirm:"删除这项任务？",resetConfirm:"清空所有任务、我的体重、咪宝体重、完成记录和天气地点？",saved:"任务已保存",weatherError:"暂时无法获取天气",locationDenied:"无法使用当前位置",installed:"Homebase 已可以安装",installIos:"iPhone 请点击分享，再选择“添加到主屏幕”。",complete:"完成",undo:"标记为未完成",deleteTask:"删除",weightTracking:"体重记录",fastingTrend:"仅显示空腹趋势",noWeightYet:"还没有空腹记录",openHealth:"打开健康记录",healthIntro:"尽量保持相同时间与状态，长期趋势会更清楚。",latestFasting:"最近空腹体重",fastingChange:"体重变化",fastingEntries:"空腹记录",needTwoFasting:"添加两次空腹体重后即可查看趋势。",addWeight:"记录体重",weightHistory:"体重历史",allRecordsShown:"下方显示全部记录",weightKg:"体重（kg）",recordDate:"日期",recordTime:"时间",fastingRecord:"空腹测量",fastingHelp:"此记录会计入趋势图",noteOptional:"备注（选填）",weightNotePlaceholder:"例如：早餐前",saveWeight:"保存体重",weightSaved:"体重已保存",deleteWeight:"删除体重记录",deleteWeightConfirm:"删除这条体重记录？",fasting:"空腹",notFasting:"非空腹",noWeightRecords:"还没有体重记录。",fromFirst:"较首次",latest:"最近",myWeight:"我的体重",petWeight:"咪宝体重",petHealthIntro:"单独记录咪宝每月的体重变化。",latestWeight:"最近体重",weightChange:"体重变化",totalEntries:"记录次数",petWeightTrend:"体重趋势",needTwoPetWeights:"添加两次记录后即可查看咪宝的趋势。",addPetWeight:"记录咪宝体重",petWeightHistory:"咪宝体重历史",historicalRecordsWelcome:"可以补录过去日期",petHistoryHelp:"选择任意过去日期，即可补录以前的体重。",petWeightNotePlaceholder:"例如：家用体重秤",savePetWeight:"保存咪宝体重",petWeightSaved:"咪宝体重已保存",deletePetWeight:"删除咪宝体重记录",deletePetWeightConfirm:"删除这条咪宝体重记录？",noPetWeightRecords:"还没有咪宝的体重记录。"}
 };
 
 function makeDefaults() {
@@ -85,6 +85,27 @@ const saveWeights = () => {
   try {localStorage.setItem("homebaseWeightRecords", JSON.stringify(weightRecords));}
   catch (error) {console.warn("Homebase could not save weight data", error);}
 };
+
+function loadPetWeightRecords() {
+  const raw = localStorage.getItem("homebasePetWeightRecords");
+  if (!raw) return [];
+  try {
+    const records = JSON.parse(raw);
+    if (!Array.isArray(records)) throw new Error("Invalid pet weight data");
+    return records.filter(record => record && Number.isFinite(Number(record.weight)) && /^\d{4}-\d{2}-\d{2}$/.test(record.date));
+  } catch (error) {
+    localStorage.setItem("homebasePetWeightRecordsBackup", raw);
+    return [];
+  }
+}
+
+let petWeightRecords = loadPetWeightRecords();
+const sortedPetWeights = () => [...petWeightRecords].sort((a, b) => a.date.localeCompare(b.date) || String(a.createdAt || "").localeCompare(String(b.createdAt || "")));
+const savePetWeights = () => {
+  try {localStorage.setItem("homebasePetWeightRecords", JSON.stringify(petWeightRecords));}
+  catch (error) {console.warn("Homebase could not save pet weight data", error);}
+};
+let healthView = "personal";
 
 const save = () => {
   try {
@@ -303,6 +324,11 @@ function formatDelta(value) {
   if (Math.abs(value) < 0.05) return "0.0 kg";
   return `${value > 0 ? "+" : ""}${value.toFixed(1)} kg`;
 }
+function formatPetDelta(value) {
+  if (value === null || !Number.isFinite(value)) return "—";
+  if (Math.abs(value) < .005) return "0.00 kg";
+  return `${value > 0 ? "+" : ""}${value.toFixed(2)} kg`;
+}
 
 function prepareCanvas(canvas) {
   const rect = canvas.getBoundingClientRect();
@@ -403,6 +429,52 @@ function renderWeight() {
   });
 }
 
+function petWeightHistoryRow(record) {
+  const row = document.createElement("div");
+  row.className = "weight-history-row pet-history-row";
+  row.innerHTML = `<div><strong></strong><small></small></div><div class="weight-history-meta"><button type="button">×</button></div>`;
+  row.querySelector("strong").textContent = `${Number(record.weight).toFixed(2)} kg`;
+  row.querySelector("small").textContent = `${weightDateLabel(record)}${record.note ? ` · ${record.note}` : ""}`;
+  const remove = row.querySelector("button");
+  remove.setAttribute("aria-label", `${t("deletePetWeight")}: ${Number(record.weight).toFixed(2)} kg`);
+  remove.onclick = () => {
+    if (!confirm(t("deletePetWeightConfirm"))) return;
+    petWeightRecords = petWeightRecords.filter(item => item.id !== record.id);
+    savePetWeights();
+    renderPetWeight();
+  };
+  return row;
+}
+
+function renderPetWeight() {
+  const records = sortedPetWeights();
+  const latest = records[records.length - 1];
+  const delta = weightDelta(records);
+  $("#petLatest").textContent = latest ? `${Number(latest.weight).toFixed(2)} kg` : "—";
+  $("#petChange").textContent = formatPetDelta(delta);
+  $("#petChange").className = delta === null || Math.abs(delta) < .005 ? "" : delta < 0 ? "trend-down" : "trend-up";
+  $("#petCount").textContent = String(records.length);
+  $("#petChartRange").textContent = records.length ? `${weightDateLabel(records[0])} – ${weightDateLabel(records[records.length - 1])}` : "";
+  $("#petChartEmpty").hidden = records.length >= 2;
+  const history = $("#petWeightHistory");
+  history.innerHTML = "";
+  [...records].reverse().forEach(record => history.appendChild(petWeightHistoryRow(record)));
+  if (!history.children.length) history.innerHTML = `<div class="empty">${t("noPetWeightRecords")}</div>`;
+  requestAnimationFrame(() => drawWeightChart($("#petWeightChart"), records, false));
+}
+
+function showHealthView(view) {
+  healthView = view === "pet" ? "pet" : "personal";
+  $("#personalHealthView").hidden = healthView !== "personal";
+  $("#petHealthView").hidden = healthView !== "pet";
+  document.querySelectorAll("[data-health-view]").forEach(button => {
+    const active = button.dataset.healthView === healthView;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
+  setTimeout(() => healthView === "pet" ? renderPetWeight() : renderWeight(), 0);
+}
+
 function renderLibrary() {
   const labels = ["all","dailyTask","scheduledTask","flexibleTask"], values = ["all","daily","scheduled","flexible"];
   const filters = $("#taskFilters");
@@ -439,13 +511,14 @@ function render() {
   renderSchedule();
   renderLibrary();
   renderWeight();
+  renderPetWeight();
 }
 
 function openModal(id) {
   const modal = $("#" + id);
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
-  if (id === "healthModal") setTimeout(renderWeight, 0);
+  if (id === "healthModal") setTimeout(() => showHealthView(healthView), 0);
 }
 function closeModal(id) {
   const modal = $("#" + id);
@@ -478,6 +551,13 @@ function openWeightForm() {
   $("#weightFasting").checked = true;
   openModal("weightFormModal");
   setTimeout(() => $("#weightValue").focus(), 120);
+}
+function openPetWeightForm() {
+  $("#petWeightForm").reset();
+  $("#petWeightDate").value = today();
+  $("#petWeightDate").max = today();
+  openModal("petWeightFormModal");
+  setTimeout(() => $("#petWeightValue").focus(), 120);
 }
 function switchLanguage() {state.lang = state.lang === "en" ? "zh" : "en"; save(); render();}
 function toast(message) {
@@ -519,6 +599,8 @@ $("#addBtn").onclick = () => openTask();
 $("#viewTasksBtn").onclick = () => openModal("todayModal");
 $("#openHealthBtn").onclick = () => openModal("healthModal");
 $("#addWeightBtn").onclick = openWeightForm;
+$("#addPetWeightBtn").onclick = openPetWeightForm;
+document.querySelectorAll("[data-health-view]").forEach(button => {button.onclick = () => showHealthView(button.dataset.healthView);});
 $("#addScheduleBtn").onclick = () => openTask("scheduled");
 $("#scheduleModalAddBtn").onclick = () => openTask("scheduled");
 $("#taskType").onchange = toggleTaskFields;
@@ -560,6 +642,25 @@ $("#weightForm").onsubmit = event => {
   renderWeight();
 };
 
+$("#petWeightForm").onsubmit = event => {
+  event.preventDefault();
+  const value = Number($("#petWeightValue").value);
+  if (!Number.isFinite(value) || value < .2 || value > 30) return;
+  petWeightRecords.push({
+    id:uid(),
+    weight:Number(value.toFixed(2)),
+    date:$("#petWeightDate").value || today(),
+    note:$("#petWeightNote").value.trim(),
+    createdAt:new Date().toISOString()
+  });
+  savePetWeights();
+  closeModal("petWeightFormModal");
+  openModal("healthModal");
+  showHealthView("pet");
+  toast(t("petWeightSaved"));
+  renderPetWeight();
+};
+
 $("#taskForm").onsubmit = event => {
   event.preventDefault();
   const type = $("#taskType").value;
@@ -575,7 +676,7 @@ $("#taskForm").onsubmit = event => {
 
 $("#resetBtn").onclick = () => {
   if (!confirm(t("resetConfirm"))) return;
-  ["cleaningState","cleaningStateBackup","homebaseLang","homebaseWeather","homebaseWeightRecords","homebaseWeightRecordsBackup"].forEach(key => localStorage.removeItem(key));
+  ["cleaningState","cleaningStateBackup","homebaseLang","homebaseWeather","homebaseWeightRecords","homebaseWeightRecordsBackup","homebasePetWeightRecords","homebasePetWeightRecordsBackup"].forEach(key => localStorage.removeItem(key));
   location.reload();
 };
 
@@ -592,4 +693,4 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
 const weather = savedWeather();
 weather ? getWeather(weather.lat, weather.lon, weather.label) : getWeather();
 render();
-window.addEventListener("resize", () => renderWeight());
+window.addEventListener("resize", () => {renderWeight(); renderPetWeight();});
