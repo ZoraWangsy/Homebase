@@ -28,6 +28,60 @@ const copy = {
   zh: {greeting:"下午好，左拉。",subtitle:"从一件小事开始，让家慢慢变得舒适。",todayTasks:"今日任务",schedule:"日程",upcomingSchedule:"未来日程",viewAll:"查看今日全部任务",addSchedule:"添加计划任务",quickActions:"快捷操作",makeItEasy:"让一切更简单",dailyTask:"每日任务",everyDay:"每天重复",scheduledTask:"计划任务",chooseRepeat:"选择循环周期",flexibleTask:"灵活任务",wheneverReady:"准备好时再开始",dashboard:"主页",tasks:"任务",health:"健康",settings:"设置",addTask:"添加任务",englishName:"英文名称",chineseName:"中文名称",taskType:"任务类型",startDate:"开始日期",repeatEvery:"每隔",unit:"单位",days:"天",weeks:"周",months:"月",followUp:"次日跟进（选填）",saveTask:"保存任务",allTasks:"全部任务",language:"语言",languageHelp:"切换中文或英文",weatherLocation:"天气地点",locate:"定位",install:"安装 Homebase",installHelp:"将工作台添加到手机主屏幕",installButton:"安装",reset:"清空本地数据",all:"全部",today:"今日",overdue:"已逾期",noTasks:"这里暂时没有任务。",deleteConfirm:"删除这项任务？",resetConfirm:"清空所有任务、我的体重、咪宝体重、完成记录和天气地点？",saved:"任务已保存",weatherError:"暂时无法获取天气",locationDenied:"无法使用当前位置",installed:"Homebase 已可以安装",installIos:"iPhone 请点击分享，再选择“添加到主屏幕”。",complete:"完成",undo:"标记为未完成",deleteTask:"删除",weightTracking:"体重记录",fastingTrend:"仅显示空腹趋势",noWeightYet:"还没有空腹记录",openHealth:"打开健康记录",healthIntro:"尽量保持相同时间与状态，长期趋势会更清楚。",latestFasting:"最近空腹体重",fastingChange:"体重变化",fastingEntries:"空腹记录",needTwoFasting:"添加两次空腹体重后即可查看趋势。",addWeight:"记录体重",weightHistory:"体重历史",allRecordsShown:"下方显示全部记录",weightKg:"体重（kg）",recordDate:"日期",recordTime:"时间",fastingRecord:"空腹测量",fastingHelp:"此记录会计入趋势图",noteOptional:"备注（选填）",weightNotePlaceholder:"例如：早餐前",saveWeight:"保存体重",weightSaved:"体重已保存",deleteWeight:"删除体重记录",deleteWeightConfirm:"删除这条体重记录？",fasting:"空腹",notFasting:"非空腹",noWeightRecords:"还没有体重记录。",fromFirst:"较首次",latest:"最近",myWeight:"我的体重",petWeight:"咪宝体重",petHealthIntro:"单独记录咪宝每月的体重变化。",latestWeight:"最近体重",weightChange:"体重变化",totalEntries:"记录次数",petWeightTrend:"体重趋势",needTwoPetWeights:"添加两次记录后即可查看咪宝的趋势。",addPetWeight:"记录咪宝体重",petWeightHistory:"咪宝体重历史",historicalRecordsWelcome:"可以补录过去日期",petHistoryHelp:"选择任意过去日期，即可补录以前的体重。",petWeightNotePlaceholder:"例如：家用体重秤",savePetWeight:"保存咪宝体重",petWeightSaved:"咪宝体重已保存",deletePetWeight:"删除咪宝体重记录",deletePetWeightConfirm:"删除这条咪宝体重记录？",noPetWeightRecords:"还没有咪宝的体重记录。"}
 };
 
+Object.assign(copy.en, {
+  petHealth:"Meatball’s health",
+  petHealthDashboardIntro:"Weight and deworming records",
+  monthlyWeightRecord:"Monthly weight record",
+  openPetWeight:"Open Meatball’s weight",
+  petDeworming:"Meatball’s deworming",
+  recordsOnlyNoReminder:"Records only · no reminders",
+  latestDeworming:"Latest deworming",
+  noDewormRecords:"No deworming records yet.",
+  openDewormRecords:"Open deworming records",
+  latestBrand:"Latest brand",
+  latestDate:"Latest date",
+  addDewormRecord:"Add deworming record",
+  dewormHistory:"Deworming history",
+  dewormHistoryHelp:"Choose any past date to add an older record.",
+  dewormBrand:"Dewormer brand",
+  dewormBrandPlaceholder:"e.g. Broadline",
+  dewormDate:"Deworming date",
+  saveDewormRecord:"Save deworming record",
+  dewormSaved:"Deworming record saved",
+  deleteDeworm:"Delete deworming record",
+  deleteDewormConfirm:"Delete this deworming record?",
+  manageTasks:"Manage tasks",
+  dailyRecordsOnly:"Daily tasks are records only",
+  resetConfirm:"Reset every task, personal and Meatball weight record, deworming record, completion record and saved weather location?"
+});
+
+Object.assign(copy.zh, {
+  petHealth:"咪宝健康",
+  petHealthDashboardIntro:"体重与驱虫记录",
+  monthlyWeightRecord:"每月体重记录",
+  openPetWeight:"打开咪宝体重",
+  petDeworming:"咪宝驱虫",
+  recordsOnlyNoReminder:"只做记录 · 不设置提醒",
+  latestDeworming:"最近一次驱虫",
+  noDewormRecords:"还没有驱虫记录。",
+  openDewormRecords:"打开驱虫记录",
+  latestBrand:"最近使用品牌",
+  latestDate:"最近驱虫日期",
+  addDewormRecord:"记录咪宝驱虫",
+  dewormHistory:"驱虫历史",
+  dewormHistoryHelp:"选择任意过去日期，即可补录以前的驱虫记录。",
+  dewormBrand:"驱虫药品牌",
+  dewormBrandPlaceholder:"例如：Broadline",
+  dewormDate:"驱虫日期",
+  saveDewormRecord:"保存驱虫记录",
+  dewormSaved:"驱虫记录已保存",
+  deleteDeworm:"删除驱虫记录",
+  deleteDewormConfirm:"删除这条驱虫记录？",
+  manageTasks:"管理任务",
+  dailyRecordsOnly:"每日任务只保留记录",
+  resetConfirm:"清空所有任务、我的体重、咪宝体重、咪宝驱虫、完成记录和天气地点？"
+});
+
 function makeDefaults() {
   const start = today();
   return [
@@ -104,6 +158,26 @@ const sortedPetWeights = () => [...petWeightRecords].sort((a, b) => a.date.local
 const savePetWeights = () => {
   try {localStorage.setItem("homebasePetWeightRecords", JSON.stringify(petWeightRecords));}
   catch (error) {console.warn("Homebase could not save pet weight data", error);}
+};
+
+function loadDewormRecords() {
+  const raw = localStorage.getItem("homebasePetDewormRecords");
+  if (!raw) return [];
+  try {
+    const records = JSON.parse(raw);
+    if (!Array.isArray(records)) throw new Error("Invalid deworming data");
+    return records.filter(record => record && typeof record.brand === "string" && record.brand.trim() && /^\d{4}-\d{2}-\d{2}$/.test(record.date));
+  } catch (error) {
+    localStorage.setItem("homebasePetDewormRecordsBackup", raw);
+    return [];
+  }
+}
+
+let dewormRecords = loadDewormRecords();
+const sortedDewormRecords = () => [...dewormRecords].sort((a, b) => a.date.localeCompare(b.date) || String(a.createdAt || "").localeCompare(String(b.createdAt || "")));
+const saveDewormRecords = () => {
+  try {localStorage.setItem("homebasePetDewormRecords", JSON.stringify(dewormRecords));}
+  catch (error) {console.warn("Homebase could not save deworming data", error);}
 };
 let healthView = "personal";
 
@@ -240,13 +314,16 @@ function taskRow(item, library = false) {
   const key = item.key || keyFor(item.id, today());
   const viewItem = {...item,key,date:item.date || today(),sourceKeys:item.sourceKeys || [key]};
   const done = itemDone(viewItem);
-  row.className = `task-item${done ? " done" : ""}`;
-  row.innerHTML = `<button class="check" type="button"></button><div><div class="task-name"></div><div class="task-meta"></div></div>${library ? '<button class="delete-task" type="button">×</button>' : ""}`;
-  row.querySelector(".check").textContent = done ? "✓" : "";
-  row.querySelector(".check").setAttribute("aria-label", `${done ? t("undo") : t("complete")}: ${taskName(item)}`);
+  const trackable = !(library && item.type === "daily");
+  row.className = `task-item${trackable && done ? " done" : ""}`;
+  row.innerHTML = `${trackable ? '<button class="check" type="button"></button>' : '<span class="task-marker" aria-hidden="true">☀</span>'}<div><div class="task-name"></div><div class="task-meta"></div></div>${library ? '<button class="delete-task" type="button">×</button>' : ""}`;
   row.querySelector(".task-name").textContent = taskName(item);
   row.querySelector(".task-meta").textContent = typeLabel(item);
-  row.querySelector(".check").onclick = () => toggleDone(viewItem);
+  if (trackable) {
+    row.querySelector(".check").textContent = done ? "✓" : "";
+    row.querySelector(".check").setAttribute("aria-label", `${done ? t("undo") : t("complete")}: ${taskName(item)}`);
+    row.querySelector(".check").onclick = () => toggleDone(viewItem);
+  }
   if (library) {
     const remove = row.querySelector(".delete-task");
     remove.setAttribute("aria-label", `${t("deleteTask")}: ${taskName(item)}`);
@@ -263,20 +340,6 @@ function removeTask(id) {
   Object.keys(state.deferred).filter(key => key.startsWith(`${id}@`)).forEach(key => delete state.deferred[key]);
   save();
   render();
-}
-
-function renderToday() {
-  const items = instances(today());
-  const main = $("#todayList"), full = $("#fullTodayList");
-  main.innerHTML = "";
-  full.innerHTML = "";
-  items.slice(0, 5).forEach(item => main.appendChild(taskRow(item)));
-  items.forEach(item => full.appendChild(taskRow(item)));
-  if (!items.length) {
-    main.innerHTML = `<div class="empty">${t("noTasks")}</div>`;
-    full.innerHTML = `<div class="empty">${t("noTasks")}</div>`;
-  }
-  $("#todayCount").textContent = `${items.filter(itemDone).length} / ${items.length}`;
 }
 
 function nextScheduled(limit = 3, horizon = 370) {
@@ -408,11 +471,6 @@ function renderWeight() {
   const fasting = fastingWeights();
   const latest = fasting[fasting.length - 1];
   const delta = weightDelta(fasting);
-  $("#latestWeight").textContent = latest ? Number(latest.weight).toFixed(1) : "—";
-  $("#latestWeightDate").textContent = latest ? `${t("latestFasting")} · ${weightDateLabel(latest, true)}` : t("noWeightYet");
-  const cardChange = $("#weightChange");
-  cardChange.textContent = delta === null ? "—" : `${formatDelta(delta)} ${t("fromFirst")}`;
-  cardChange.className = `weight-change ${delta === null || Math.abs(delta) < .05 ? "neutral" : delta < 0 ? "down" : "up"}`;
   $("#healthLatest").textContent = latest ? `${Number(latest.weight).toFixed(1)} kg` : "—";
   $("#healthChange").textContent = formatDelta(delta);
   $("#healthChange").className = delta === null || Math.abs(delta) < .05 ? "" : delta < 0 ? "trend-down" : "trend-up";
@@ -423,10 +481,7 @@ function renderWeight() {
   history.innerHTML = "";
   sortedWeights().reverse().forEach(record => history.appendChild(weightHistoryRow(record)));
   if (!history.children.length) history.innerHTML = `<div class="empty">${t("noWeightRecords")}</div>`;
-  requestAnimationFrame(() => {
-    drawWeightChart($("#miniWeightChart"), fasting.slice(-12), true);
-    drawWeightChart($("#weightChart"), fasting, false);
-  });
+  requestAnimationFrame(() => drawWeightChart($("#weightChart"), fasting, false));
 }
 
 function petWeightHistoryRow(record) {
@@ -450,6 +505,11 @@ function renderPetWeight() {
   const records = sortedPetWeights();
   const latest = records[records.length - 1];
   const delta = weightDelta(records);
+  $("#dashboardPetLatest").textContent = latest ? Number(latest.weight).toFixed(2) : "—";
+  $("#dashboardPetWeightDate").textContent = latest ? `${t("latest")} · ${weightDateLabel(latest)}` : t("noPetWeightRecords");
+  const dashboardChange = $("#dashboardPetChange");
+  dashboardChange.textContent = delta === null ? "—" : `${formatPetDelta(delta)} ${t("fromFirst")}`;
+  dashboardChange.className = `weight-change ${delta === null || Math.abs(delta) < .005 ? "neutral" : delta < 0 ? "down" : "up"}`;
   $("#petLatest").textContent = latest ? `${Number(latest.weight).toFixed(2)} kg` : "—";
   $("#petChange").textContent = formatPetDelta(delta);
   $("#petChange").className = delta === null || Math.abs(delta) < .005 ? "" : delta < 0 ? "trend-down" : "trend-up";
@@ -460,7 +520,42 @@ function renderPetWeight() {
   history.innerHTML = "";
   [...records].reverse().forEach(record => history.appendChild(petWeightHistoryRow(record)));
   if (!history.children.length) history.innerHTML = `<div class="empty">${t("noPetWeightRecords")}</div>`;
-  requestAnimationFrame(() => drawWeightChart($("#petWeightChart"), records, false));
+  requestAnimationFrame(() => {
+    drawWeightChart($("#miniPetWeightChart"), records.slice(-12), true);
+    drawWeightChart($("#petWeightChart"), records, false);
+  });
+}
+
+function dewormHistoryRow(record) {
+  const row = document.createElement("div");
+  row.className = "deworm-history-row";
+  row.innerHTML = `<div><strong></strong><small></small></div><button type="button">×</button>`;
+  row.querySelector("strong").textContent = record.brand;
+  row.querySelector("small").textContent = weightDateLabel(record);
+  const remove = row.querySelector("button");
+  remove.setAttribute("aria-label", `${t("deleteDeworm")}: ${record.brand}`);
+  remove.onclick = () => {
+    if (!confirm(t("deleteDewormConfirm"))) return;
+    dewormRecords = dewormRecords.filter(item => item.id !== record.id);
+    saveDewormRecords();
+    renderDeworm();
+  };
+  return row;
+}
+
+function renderDeworm() {
+  const records = sortedDewormRecords();
+  const latest = records[records.length - 1];
+  $("#dashboardDewormBrand").textContent = latest ? latest.brand : "—";
+  $("#dashboardDewormDate").textContent = latest ? weightDateLabel(latest) : t("noDewormRecords");
+  $("#dashboardDewormCount").textContent = String(records.length);
+  $("#dewormLatestBrand").textContent = latest ? latest.brand : "—";
+  $("#dewormLatestDate").textContent = latest ? weightDateLabel(latest) : "—";
+  $("#dewormCount").textContent = String(records.length);
+  const history = $("#dewormHistory");
+  history.innerHTML = "";
+  [...records].reverse().forEach(record => history.appendChild(dewormHistoryRow(record)));
+  if (!history.children.length) history.innerHTML = `<div class="empty">${t("noDewormRecords")}</div>`;
 }
 
 function showHealthView(view) {
@@ -507,11 +602,11 @@ function applyLanguage() {
 function render() {
   autoDefer();
   applyLanguage();
-  renderToday();
   renderSchedule();
   renderLibrary();
   renderWeight();
   renderPetWeight();
+  renderDeworm();
 }
 
 function openModal(id) {
@@ -559,6 +654,13 @@ function openPetWeightForm() {
   openModal("petWeightFormModal");
   setTimeout(() => $("#petWeightValue").focus(), 120);
 }
+function openDewormForm() {
+  $("#dewormForm").reset();
+  $("#dewormDate").value = today();
+  $("#dewormDate").max = today();
+  openModal("dewormFormModal");
+  setTimeout(() => $("#dewormBrand").focus(), 120);
+}
 function switchLanguage() {state.lang = state.lang === "en" ? "zh" : "en"; save(); render();}
 function toast(message) {
   const element = $("#toast");
@@ -596,8 +698,11 @@ $("#languageBtn").onclick = switchLanguage;
 $("#settingsLanguageBtn").onclick = switchLanguage;
 $("#settingsBtn").onclick = () => openModal("settingsModal");
 $("#addBtn").onclick = () => openTask();
-$("#viewTasksBtn").onclick = () => openModal("todayModal");
-$("#openHealthBtn").onclick = () => openModal("healthModal");
+$("#manageTasksBtn").onclick = () => openModal("tasksModal");
+$("#tasksModalAddBtn").onclick = () => openTask();
+$("#openPetWeightBtn").onclick = () => {openModal("healthModal"); showHealthView("pet");};
+$("#openDewormBtn").onclick = () => openModal("dewormModal");
+$("#addDewormBtn").onclick = openDewormForm;
 $("#addWeightBtn").onclick = openWeightForm;
 $("#addPetWeightBtn").onclick = openPetWeightForm;
 document.querySelectorAll("[data-health-view]").forEach(button => {button.onclick = () => showHealthView(button.dataset.healthView);});
@@ -661,6 +766,19 @@ $("#petWeightForm").onsubmit = event => {
   renderPetWeight();
 };
 
+$("#dewormForm").onsubmit = event => {
+  event.preventDefault();
+  const brand = $("#dewormBrand").value.trim();
+  const date = $("#dewormDate").value || today();
+  if (!brand || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date > today()) return;
+  dewormRecords.push({id:uid(),brand,date,createdAt:new Date().toISOString()});
+  saveDewormRecords();
+  closeModal("dewormFormModal");
+  openModal("dewormModal");
+  toast(t("dewormSaved"));
+  renderDeworm();
+};
+
 $("#taskForm").onsubmit = event => {
   event.preventDefault();
   const type = $("#taskType").value;
@@ -676,7 +794,7 @@ $("#taskForm").onsubmit = event => {
 
 $("#resetBtn").onclick = () => {
   if (!confirm(t("resetConfirm"))) return;
-  ["cleaningState","cleaningStateBackup","homebaseLang","homebaseWeather","homebaseWeightRecords","homebaseWeightRecordsBackup","homebasePetWeightRecords","homebasePetWeightRecordsBackup"].forEach(key => localStorage.removeItem(key));
+  ["cleaningState","cleaningStateBackup","homebaseLang","homebaseWeather","homebaseWeightRecords","homebaseWeightRecordsBackup","homebasePetWeightRecords","homebasePetWeightRecordsBackup","homebasePetDewormRecords","homebasePetDewormRecordsBackup"].forEach(key => localStorage.removeItem(key));
   location.reload();
 };
 
