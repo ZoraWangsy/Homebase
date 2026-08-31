@@ -1,14 +1,14 @@
-const CACHE = "homebase-v07-pet-weight";
+const CACHE = "homebase-v09-pet-first";
 const ASSETS = [
   "./",
   "./index.html",
-  "./css/app.css?v=07",
-  "./js/app.js?v=07",
+  "./css/app.css?v=09",
+  "./js/app.js?v=09",
   "./assets/meatball.jpeg",
   "./manifest.webmanifest",
-  "./apple-touch-icon.png?v=07",
-  "./icon-192.png?v=07",
-  "./icon-512.png?v=07"
+  "./apple-touch-icon.png?v=09",
+  "./icon-192.png?v=09",
+  "./icon-512.png?v=09"
 ];
 
 self.addEventListener("install", event => {

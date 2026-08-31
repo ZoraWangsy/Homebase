@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Homebase">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=07">
-  <link rel="stylesheet" href="css/app.css?v=07">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=09">
+  <link rel="stylesheet" href="css/app.css?v=09">
   <title>Homebase</title>
 </head>
 <body>
@@ -36,16 +36,31 @@
         <p data-i18n="subtitle">A calm home starts with one small thing.</p>
       </section>
 
-      <section class="dashboard-grid">
-        <article class="glass panel tasks-panel">
-          <div class="panel-heading">
-            <div><span class="section-icon amber">✓</span><h2 data-i18n="todayTasks">Today’s Tasks</h2></div>
-            <span class="task-count" id="todayCount">0 / 0</span>
-          </div>
-          <div class="task-list" id="todayList"></div>
-          <button class="text-button" id="viewTasksBtn" type="button"><span data-i18n="viewAll">View all tasks</span> →</button>
-        </article>
+      <section class="pet-dashboard-section">
+        <div class="pet-dashboard-heading">
+          <div><span class="pet-avatar">🐾</span><div><h2 data-i18n="petHealth">Meatball’s health</h2><p data-i18n="petHealthDashboardIntro">Weight and deworming records</p></div></div>
+        </div>
+        <div class="pet-health-grid">
+          <article class="glass pet-health-card pet-weight-dashboard-card">
+            <div class="pet-card-heading"><div><span class="section-icon sage">⚖</span><div><h3 data-i18n="petWeight">Meatball’s weight</h3><p data-i18n="monthlyWeightRecord">Monthly weight record</p></div></div><span class="weight-change neutral" id="dashboardPetChange">—</span></div>
+            <div class="pet-card-value"><strong id="dashboardPetLatest">—</strong><span> kg</span><small id="dashboardPetWeightDate" data-i18n="noPetWeightRecords">No Meatball weight records yet.</small></div>
+            <div class="mini-chart-wrap" aria-hidden="true"><canvas id="miniPetWeightChart"></canvas></div>
+            <button class="text-button" id="openPetWeightBtn" type="button"><span data-i18n="openPetWeight">Open Meatball’s weight</span> →</button>
+          </article>
 
+          <article class="glass pet-health-card deworm-dashboard-card">
+            <div class="pet-card-heading"><div><span class="section-icon deworm-icon">✦</span><div><h3 data-i18n="petDeworming">Meatball’s deworming</h3><p data-i18n="recordsOnlyNoReminder">Records only · no reminders</p></div></div><span class="record-count" id="dashboardDewormCount">0</span></div>
+            <div class="deworm-latest">
+              <small data-i18n="latestDeworming">Latest deworming</small>
+              <strong id="dashboardDewormBrand">—</strong>
+              <span id="dashboardDewormDate" data-i18n="noDewormRecords">No deworming records yet.</span>
+            </div>
+            <button class="text-button" id="openDewormBtn" type="button"><span data-i18n="openDewormRecords">Open deworming records</span> →</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-schedule-section">
         <article class="glass panel schedule-panel">
           <div class="panel-heading">
             <div><span class="section-icon sage">◷</span><h2 data-i18n="schedule">Schedule</h2></div>
@@ -55,28 +70,10 @@
         </article>
       </section>
 
-      <section class="weight-section">
-        <article class="glass weight-card" id="weightCard">
-          <div class="weight-summary">
-            <span class="section-icon rose">♡</span>
-            <div>
-              <h2 data-i18n="weightTracking">Weight tracking</h2>
-              <p id="weightSubtitle" data-i18n="fastingTrend">Fasting trend only</p>
-            </div>
-          </div>
-          <div class="weight-latest">
-            <div><strong id="latestWeight">—</strong><span> kg</span><small id="latestWeightDate" data-i18n="noWeightYet">No records yet</small></div>
-            <span class="weight-change neutral" id="weightChange">—</span>
-          </div>
-          <div class="mini-chart-wrap" aria-hidden="true"><canvas id="miniWeightChart"></canvas></div>
-          <button class="text-button" id="openHealthBtn" type="button"><span data-i18n="openHealth">Open health record</span> →</button>
-        </article>
-      </section>
-
       <section class="quick-section">
         <div class="quick-heading"><h2 data-i18n="quickActions">Quick Actions</h2><span data-i18n="makeItEasy">Make it easy</span></div>
         <div class="quick-grid">
-          <button class="glass quick-card" data-add-type="daily" type="button"><span class="quick-icon">☀</span><strong data-i18n="dailyTask">Daily task</strong><small data-i18n="everyDay">Every day</small></button>
+          <button class="glass quick-card" id="manageTasksBtn" type="button"><span class="quick-icon">☀</span><strong data-i18n="manageTasks">Manage tasks</strong><small data-i18n="dailyRecordsOnly">Daily tasks are records only</small></button>
           <button class="glass quick-card" data-add-type="scheduled" type="button"><span class="quick-icon">▣</span><strong data-i18n="scheduledTask">Scheduled</strong><small data-i18n="chooseRepeat">Choose a repeat</small></button>
           <button class="glass quick-card" data-add-type="flexible" type="button"><span class="quick-icon">✦</span><strong data-i18n="flexibleTask">Flexible</strong><small data-i18n="wheneverReady">Whenever you’re ready</small></button>
         </div>
@@ -129,14 +126,7 @@
       <div class="sheet-title"><h3 data-i18n="allTasks">All tasks</h3><button class="close-button" data-close="tasksModal" type="button">×</button></div>
       <div class="filter-row" id="taskFilters"></div>
       <div class="task-list library-list" id="allTasksList"></div>
-    </section>
-  </div>
-
-  <div class="modal" id="todayModal" aria-hidden="true">
-    <section class="sheet glass tall-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-title"><h3 data-i18n="todayTasks">Today’s Tasks</h3><button class="close-button" data-close="todayModal" type="button" aria-label="Close">×</button></div>
-      <div class="task-list library-list" id="fullTodayList"></div>
+      <button class="primary-button" id="tasksModalAddBtn" type="button" data-i18n="addTask">Add task</button>
     </section>
   </div>
 
@@ -223,6 +213,34 @@
     </form>
   </div>
 
+  <div class="modal" id="dewormModal" aria-hidden="true">
+    <section class="sheet glass tall-sheet deworm-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><div><h3 data-i18n="petDeworming">Meatball’s deworming</h3><p class="sheet-subtitle" data-i18n="recordsOnlyNoReminder">Records only · no reminders</p></div><button class="close-button" data-close="dewormModal" type="button" aria-label="Close">×</button></div>
+      <div class="deworm-summary-card">
+        <div><small data-i18n="latestBrand">Latest brand</small><strong id="dewormLatestBrand">—</strong></div>
+        <div><small data-i18n="latestDate">Latest date</small><strong id="dewormLatestDate">—</strong></div>
+        <div><small data-i18n="totalEntries">Entries</small><strong id="dewormCount">0</strong></div>
+      </div>
+      <button class="primary-button pet-button" id="addDewormBtn" type="button" data-i18n="addDewormRecord">Add deworming record</button>
+      <div class="history-heading"><h4 data-i18n="dewormHistory">Deworming history</h4><small data-i18n="historicalRecordsWelcome">Past dates can be added</small></div>
+      <div class="deworm-history" id="dewormHistory"></div>
+    </section>
+  </div>
+
+  <div class="modal" id="dewormFormModal" aria-hidden="true">
+    <form class="sheet glass" id="dewormForm">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><h3 data-i18n="addDewormRecord">Add deworming record</h3><button class="close-button" data-close="dewormFormModal" type="button" aria-label="Close">×</button></div>
+      <p class="form-help" data-i18n="dewormHistoryHelp">Choose any past date to add an older record.</p>
+      <label for="dewormBrand" data-i18n="dewormBrand">Dewormer brand</label>
+      <input id="dewormBrand" maxlength="80" data-i18n-placeholder="dewormBrandPlaceholder" placeholder="e.g. Broadline" autocomplete="off" required>
+      <label for="dewormDate" data-i18n="dewormDate">Deworming date</label>
+      <input id="dewormDate" type="date" required>
+      <button class="primary-button pet-button" type="submit" data-i18n="saveDewormRecord">Save deworming record</button>
+    </form>
+  </div>
+
   <div class="modal" id="settingsModal" aria-hidden="true">
     <section class="sheet glass">
       <div class="sheet-handle"></div>
@@ -235,6 +253,6 @@
   </div>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="js/app.js?v=07" defer></script>
+  <script src="js/app.js?v=09" defer></script>
 </body>
 </html>
