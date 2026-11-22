@@ -1,4 +1,4 @@
-Homebase v0.9
+Homebase v0.10
 
 Warm Apple-style glassmorphism PWA dashboard with:
 - Meatball photo background
@@ -14,6 +14,8 @@ Warm Apple-style glassmorphism PWA dashboard with:
 - Meatball health is the first Dashboard section
 - Today's Tasks is hidden from the Dashboard; tasks remain available in All Tasks
 - Health view with fasting-only weight trend chart
+- Personal fasting-weight chart shows six records per screen and scrolls horizontally through older dates
+- Personal chart opens at the latest records; Meatball's weight chart remains unchanged
 - Weight date, time, fasting status and optional notes
 - Complete weight history stored locally on the device
 - Separate Meatball / 咪宝 weight tracking with historical-date entry

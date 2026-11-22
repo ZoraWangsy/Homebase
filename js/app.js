@@ -52,6 +52,7 @@ Object.assign(copy.en, {
   deleteDewormConfirm:"Delete this deworming record?",
   manageTasks:"Manage tasks",
   dailyRecordsOnly:"Daily tasks are records only",
+  swipeWeightChart:"Swipe horizontally to view earlier records",
   resetConfirm:"Reset every task, personal and Meatball weight record, deworming record, completion record and saved weather location?"
 });
 
@@ -79,6 +80,7 @@ Object.assign(copy.zh, {
   deleteDewormConfirm:"删除这条驱虫记录？",
   manageTasks:"管理任务",
   dailyRecordsOnly:"每日任务只保留记录",
+  swipeWeightChart:"左右滑动查看更早的体重记录",
   resetConfirm:"清空所有任务、我的体重、咪宝体重、咪宝驱虫、完成记录和天气地点？"
 });
 
@@ -377,6 +379,10 @@ function weightDateLabel(record, includeTime = false) {
   return includeTime && record.time ? `${formatted} · ${record.time}` : formatted;
 }
 
+function shortWeightDateLabel(record) {
+  return new Intl.DateTimeFormat(state.lang === "zh" ? "zh-CN" : "en-NZ", {day:"numeric",month:"short"}).format(parseDate(record.date));
+}
+
 function weightDelta(records) {
   if (records.length < 2) return null;
   return Number(records[records.length - 1].weight) - Number(records[0].weight);
@@ -405,7 +411,7 @@ function prepareCanvas(canvas) {
   return {context,width,height};
 }
 
-function drawWeightChart(canvas, records, compact = false) {
+function drawWeightChart(canvas, records, compact = false, showEveryDate = false) {
   const {context,width,height} = prepareCanvas(canvas);
   context.clearRect(0, 0, width, height);
   if (records.length < 2) return;
@@ -428,11 +434,20 @@ function drawWeightChart(canvas, records, compact = false) {
       context.beginPath(); context.moveTo(padding.left,lineY); context.lineTo(width-padding.right,lineY); context.stroke();
       context.fillText(`${value.toFixed(1)}`, 3, lineY + 4);
     });
-    const firstLabel = weightDateLabel(records[0]);
-    const lastLabel = weightDateLabel(records[records.length - 1]);
-    context.fillText(firstLabel, padding.left, height - 5);
-    const lastWidth = context.measureText(lastLabel).width;
-    context.fillText(lastLabel, width - padding.right - lastWidth, height - 5);
+    if (showEveryDate) {
+      context.font = "10px -apple-system, sans-serif";
+      records.forEach((record, index) => {
+        context.textAlign = index === 0 ? "left" : index === records.length - 1 ? "right" : "center";
+        context.fillText(shortWeightDateLabel(record), x(index), height - 5);
+      });
+      context.textAlign = "start";
+    } else {
+      const firstLabel = weightDateLabel(records[0]);
+      const lastLabel = weightDateLabel(records[records.length - 1]);
+      context.fillText(firstLabel, padding.left, height - 5);
+      const lastWidth = context.measureText(lastLabel).width;
+      context.fillText(lastLabel, width - padding.right - lastWidth, height - 5);
+    }
   }
 
   const gradient = context.createLinearGradient(0,padding.top,0,height-padding.bottom);
@@ -477,11 +492,20 @@ function renderWeight() {
   $("#healthCount").textContent = String(fasting.length);
   $("#chartRange").textContent = fasting.length ? `${weightDateLabel(fasting[0])} – ${weightDateLabel(fasting[fasting.length - 1])}` : "";
   $("#chartEmpty").hidden = fasting.length >= 2;
+  $("#weightSwipeHint").hidden = fasting.length <= 6;
   const history = $("#weightHistory");
   history.innerHTML = "";
   sortedWeights().reverse().forEach(record => history.appendChild(weightHistoryRow(record)));
   if (!history.children.length) history.innerHTML = `<div class="empty">${t("noWeightRecords")}</div>`;
-  requestAnimationFrame(() => drawWeightChart($("#weightChart"), fasting, false));
+  requestAnimationFrame(() => {
+    const scroller = $("#personalChartScroll");
+    const content = $("#personalChartContent");
+    const viewportWidth = Math.max(280, Math.round(scroller.clientWidth || scroller.parentElement.clientWidth || 320));
+    const chartWidth = fasting.length > 6 ? Math.ceil(viewportWidth * fasting.length / 6) : viewportWidth;
+    content.style.width = `${chartWidth}px`;
+    drawWeightChart($("#weightChart"), fasting, false, true);
+    requestAnimationFrame(() => {scroller.scrollLeft = Math.max(0, scroller.scrollWidth - scroller.clientWidth);});
+  });
 }
 
 function petWeightHistoryRow(record) {
