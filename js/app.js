@@ -399,10 +399,10 @@ function formatPetDelta(value) {
   return `${value > 0 ? "+" : ""}${value.toFixed(2)} kg`;
 }
 
-function prepareCanvas(canvas) {
+function prepareCanvas(canvas, minWidth = 280) {
   const rect = canvas.getBoundingClientRect();
   const ratio = Math.max(1, window.devicePixelRatio || 1);
-  const width = Math.max(280, Math.round(rect.width || canvas.parentElement.clientWidth || 320));
+  const width = Math.max(minWidth, Math.round(rect.width || canvas.parentElement.clientWidth || minWidth));
   const height = Math.max(100, Math.round(rect.height || canvas.parentElement.clientHeight || 160));
   canvas.width = Math.round(width * ratio);
   canvas.height = Math.round(height * ratio);
@@ -411,15 +411,39 @@ function prepareCanvas(canvas) {
   return {context,width,height};
 }
 
-function drawWeightChart(canvas, records, compact = false, showEveryDate = false) {
-  const {context,width,height} = prepareCanvas(canvas);
-  context.clearRect(0, 0, width, height);
-  if (records.length < 2) return;
+function weightChartScale(records) {
   const values = records.map(record => Number(record.weight));
   const rawMin = Math.min(...values), rawMax = Math.max(...values);
   const spread = Math.max(1, rawMax - rawMin);
-  const min = rawMin - spread * .25, max = rawMax + spread * .25;
-  const padding = compact ? {left:5,right:5,top:12,bottom:8} : {left:40,right:14,top:16,bottom:27};
+  return {values,min:rawMin - spread * .25,max:rawMax + spread * .25};
+}
+
+function drawWeightYAxis(canvas, records) {
+  const {context,width,height} = prepareCanvas(canvas, 40);
+  context.clearRect(0, 0, width, height);
+  if (records.length < 2) return;
+  const {min,max} = weightChartScale(records);
+  const padding = {top:16,bottom:27};
+  context.font = "10px -apple-system, sans-serif";
+  context.fillStyle = "rgba(46,40,35,.62)";
+  context.strokeStyle = "rgba(96,76,60,.2)";
+  context.lineWidth = 1;
+  context.textAlign = "right";
+  [0,.5,1].forEach(step => {
+    const value = max - (max - min) * step;
+    const lineY = padding.top + (height - padding.top - padding.bottom) * step;
+    context.fillText(value.toFixed(1), width - 7, lineY + 4);
+    context.beginPath(); context.moveTo(width - 5,lineY); context.lineTo(width,lineY); context.stroke();
+  });
+  context.textAlign = "start";
+}
+
+function drawWeightChart(canvas, records, compact = false, showEveryDate = false, fixedYAxis = false) {
+  const {context,width,height} = prepareCanvas(canvas);
+  context.clearRect(0, 0, width, height);
+  if (records.length < 2) return;
+  const {values,min,max} = weightChartScale(records);
+  const padding = compact ? {left:5,right:5,top:12,bottom:8} : fixedYAxis ? {left:8,right:14,top:16,bottom:27} : {left:40,right:14,top:16,bottom:27};
   const x = index => padding.left + index * (width - padding.left - padding.right) / (records.length - 1);
   const y = value => padding.top + (max - value) * (height - padding.top - padding.bottom) / (max - min);
 
@@ -432,7 +456,7 @@ function drawWeightChart(canvas, records, compact = false, showEveryDate = false
       const value = max - (max - min) * step;
       const lineY = padding.top + (height - padding.top - padding.bottom) * step;
       context.beginPath(); context.moveTo(padding.left,lineY); context.lineTo(width-padding.right,lineY); context.stroke();
-      context.fillText(`${value.toFixed(1)}`, 3, lineY + 4);
+      if (!fixedYAxis) context.fillText(`${value.toFixed(1)}`, 3, lineY + 4);
     });
     if (showEveryDate) {
       context.font = "10px -apple-system, sans-serif";
@@ -492,7 +516,7 @@ function renderWeight() {
   $("#healthCount").textContent = String(fasting.length);
   $("#chartRange").textContent = fasting.length ? `${weightDateLabel(fasting[0])} – ${weightDateLabel(fasting[fasting.length - 1])}` : "";
   $("#chartEmpty").hidden = fasting.length >= 2;
-  $("#weightSwipeHint").hidden = fasting.length <= 6;
+  $("#weightSwipeHint").hidden = fasting.length <= 8;
   const history = $("#weightHistory");
   history.innerHTML = "";
   sortedWeights().reverse().forEach(record => history.appendChild(weightHistoryRow(record)));
@@ -501,9 +525,10 @@ function renderWeight() {
     const scroller = $("#personalChartScroll");
     const content = $("#personalChartContent");
     const viewportWidth = Math.max(280, Math.round(scroller.clientWidth || scroller.parentElement.clientWidth || 320));
-    const chartWidth = fasting.length > 6 ? Math.ceil(viewportWidth * fasting.length / 6) : viewportWidth;
+    const chartWidth = fasting.length > 8 ? Math.ceil(viewportWidth * fasting.length / 8) : viewportWidth;
     content.style.width = `${chartWidth}px`;
-    drawWeightChart($("#weightChart"), fasting, false, true);
+    drawWeightYAxis($("#weightYAxis"), fasting);
+    drawWeightChart($("#weightChart"), fasting, false, true, true);
     requestAnimationFrame(() => {scroller.scrollLeft = Math.max(0, scroller.scrollWidth - scroller.clientWidth);});
   });
 }

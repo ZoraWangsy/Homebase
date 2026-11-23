@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Homebase">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=10">
-  <link rel="stylesheet" href="css/app.css?v=10">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=11">
+  <link rel="stylesheet" href="css/app.css?v=11">
   <title>Homebase</title>
 </head>
 <body>
@@ -156,9 +156,12 @@
         </div>
         <div class="weight-chart-card">
           <div class="chart-heading"><strong data-i18n="fastingTrend">Fasting trend only</strong><small id="chartRange"></small></div>
-          <div class="chart-scroll" id="personalChartScroll" role="region" aria-label="Scrollable fasting weight trend chart">
-            <div class="chart-scroll-content" id="personalChartContent">
-              <div class="chart-wrap personal-chart-wrap"><canvas id="weightChart" role="img" aria-label="Fasting weight trend chart"></canvas><div class="chart-empty" id="chartEmpty" data-i18n="needTwoFasting">Add two fasting records to see your trend.</div></div>
+          <div class="personal-chart-shell">
+            <div class="weight-y-axis" aria-hidden="true"><canvas id="weightYAxis"></canvas></div>
+            <div class="chart-scroll" id="personalChartScroll" role="region" aria-label="Scrollable fasting weight trend chart">
+              <div class="chart-scroll-content" id="personalChartContent">
+                <div class="chart-wrap personal-chart-wrap"><canvas id="weightChart" role="img" aria-label="Fasting weight trend chart"></canvas><div class="chart-empty" id="chartEmpty" data-i18n="needTwoFasting">Add two fasting records to see your trend.</div></div>
+              </div>
             </div>
           </div>
           <p class="chart-swipe-hint" id="weightSwipeHint" data-i18n="swipeWeightChart" hidden>Swipe horizontally to view earlier records</p>
@@ -258,6 +261,6 @@
   </div>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="js/app.js?v=10" defer></script>
+  <script src="js/app.js?v=11" defer></script>
 </body>
 </html>
